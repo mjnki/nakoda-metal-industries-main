@@ -370,6 +370,10 @@
     .team-photo {
         height: 220px;
     }
+
+    .team-photo img {
+        object-position: center 30% ; /* More aggressive top focus for mobile */
+    }
     
     .team-photo i {
         font-size: 3rem;
