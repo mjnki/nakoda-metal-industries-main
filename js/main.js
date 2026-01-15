@@ -87,7 +87,7 @@ class NakodaMetalIndustries {
         this.setupIntersectionObserver();
     }
 
-    
+
     showUpdateNotification() {
         const notification = document.createElement('div');
         notification.innerHTML = `
@@ -252,24 +252,35 @@ class NakodaMetalIndustries {
     }
 
     initializeBackToTop() {
-        const backToTopBtn = document.getElementById('backToTop');
+        const backToTopButton = document.getElementById('backToTop');
 
-        if (!backToTopBtn) {
-            console.log('Button not found during initialization');
+        // If the button doesn't exist on the page, stop running the function
+        if (!backToTopButton) {
             return;
         }
 
-        // Add scroll listener
-        window.addEventListener('scroll', () => {
-            this.updateBackToTop();
-        });
+        const scrollThreshold = window.innerHeight;
 
-        backToTopBtn.addEventListener('click', () => {
+        const handleScroll = () => {
+            if (window.scrollY > scrollThreshold) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        };
+
+        const scrollToTop = (event) => {
+            event.preventDefault(); 
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: 'smooth' 
             });
-        });
+        };
+
+
+        window.addEventListener('scroll', this.throttle(handleScroll, 100));
+
+        backToTopButton.addEventListener('click', scrollToTop);
     }
 
     updateBackToTop() {
