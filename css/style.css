@@ -107,8 +107,15 @@ p { margin-bottom: var(--spacing-md); color: var(--gray-medium); }
 /* Lists */
 ul { list-style: none; }
 ul li { margin-bottom: var(--spacing-sm); position: relative; padding-left: var(--spacing-lg); }
-ul li::before { content: '✓'; position: absolute; left: 0; color: var(--sustainable-green); font-weight: bold; }
-
+ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--copper-primary);
+    font-size: var(--font-size-lg);
+    line-height: 1;
+}
 /* Buttons */
 .btn {
     display: inline-flex;
